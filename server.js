@@ -22,10 +22,19 @@ app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 
-// open notes.html upon click on the start button
+//read the `db.json` file and return all saved notes as JSON.
+
+app.get("/api/notes", function (req, res) {
+  return res.json(__dirname, "./db/db.json");
+});
+
+// open index whenever something not defined is in the URL
 app.get("*", function (req, res) {
+  fs.readFile(__dirname, "./public/index.html");
   res.sendFile(path.join(__dirname, "./public/index.html"));
 });
+
+// listen to the localhost
 
 app.listen(PORT, function () {
   console.log("App listening on PORT : http://localhost:" + PORT);
