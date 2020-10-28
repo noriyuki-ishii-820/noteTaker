@@ -17,8 +17,9 @@ module.exports = function (app) {
   // add it to the `db.json` file, and then return the new note to the client.
 
   app.post("/api/notes", function (req, res) {
-    assignId();
     notes.push(req.body);
+    assignId();
+
     fs.writeFileSync("./db/db.json", JSON.stringify(notes), function (err) {
       if (err) throw err;
     });
@@ -43,7 +44,7 @@ module.exports = function (app) {
   });
 
   function assignId() {
-    for (i = 0; i < notes.length; i++) {
+    for (i = 1; i < notes.length; i++) {
       notes[i].id = i;
     }
   }
