@@ -2,6 +2,8 @@
 // =============================================================
 var express = require("express");
 var path = require("path");
+var db = require("./db/db.json");
+var fs = require("fs");
 
 // Sets up the Express App
 // =============================================================
@@ -25,7 +27,10 @@ app.get("/", function (req, res) {
 //read the `db.json` file and return all saved notes as JSON.
 
 app.get("/api/notes", function (req, res) {
-  return res.json(__dirname, "./db/db.json");
+  fs.readFile("./db/db.json", function (error, content) {
+    const notes = JSON.parse(content);
+    return res.json(notes);
+  });
 });
 
 // open index whenever something not defined is in the URL
