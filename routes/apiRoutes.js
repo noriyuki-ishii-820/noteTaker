@@ -33,7 +33,6 @@ module.exports = function (app) {
 
   app.delete("/api/notes/:id", function (req, res) {
     let id = req.params.id;
-    console.log(id);
     notes.splice(id, 1);
     assignId();
 
@@ -44,7 +43,7 @@ module.exports = function (app) {
   });
 
   function assignId() {
-    for (i = 1; i < notes.length; i++) {
+    for (i = 0; i < notes.length; i++) {
       notes[i].id = i;
     }
   }
