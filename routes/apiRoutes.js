@@ -17,8 +17,12 @@ module.exports = function (app) {
   // add it to the `db.json` file, and then return the new note to the client.
 
   app.post("/api/notes", function (req, res) {
-    notes.push(req.body);
-    assignId();
+    const note = {
+      title: req.body.title,
+      text: req.body.text,
+      id: req.body.title.toLowerCase().replace(/[\s]/g, ""),
+    };
+    notes.push(note);
 
     fs.writeFileSync("./db/db.json", JSON.stringify(notes), function (err) {
       if (err) throw err;
@@ -33,18 +37,18 @@ module.exports = function (app) {
 
   app.delete("/api/notes/:id", function (req, res) {
     let id = req.params.id;
-    notes.splice(id, 1);
-    assignId();
+    for (i = 0; i < notes.length; i++) {
+      if (notes[i].id === id) {
+        res.send(notes[i]);
+        notes.splice(i, 1);
+        break;
+      }
+    }
 
+    //const newnotes = notes.filter((note) => note.id !== id);
     fs.writeFileSync("./db/db.json", JSON.stringify(notes), function (err) {
       if (err) throw err;
     });
     res.json({ deletion: "success" });
   });
-
-  function assignId() {
-    for (i = 0; i < notes.length; i++) {
-      notes[i].id = i;
-    }
-  }
 };
