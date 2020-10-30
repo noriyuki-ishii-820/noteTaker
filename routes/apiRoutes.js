@@ -37,14 +37,13 @@ module.exports = function (app) {
 
   app.delete("/api/notes/:id", function (req, res) {
     let id = req.params.id;
+
     for (i = 0; i < notes.length; i++) {
-      if (notes[i].id === id) {
-        res.send(notes[i]);
+      if (notes[i].id == id) {
         notes.splice(i, 1);
         break;
       }
     }
-
     //const newnotes = notes.filter((note) => note.id !== id);
     fs.writeFileSync("./db/db.json", JSON.stringify(notes), function (err) {
       if (err) throw err;
