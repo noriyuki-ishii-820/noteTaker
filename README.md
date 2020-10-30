@@ -23,25 +23,19 @@ Please use: npm i
 
 ## Usage
 
-Screenshot 1: Once the node is read, the application will outpu the get-started page.
+Screenshot 1: Once the node is read, the application will output the get-started page.
 
-![](./img/note11.png)
-
----
-
-Screenshot 2: In the very beginning, there is no saved note and the user gets to input the note data.
-
-![](./img/note2.png)
+![](./img/note1.png)
 
 ---
 
-Screenshot 3: The user can get to save as many notes as he/she wishes.
+Screenshot 2: The user can get to save as many notes as he/she wishes.
 
 ![](./img/note5.png)
 
 ---
 
-Screenshot 4: User can delete any notes he/she wishes as well (in the screenshot below, test3 is deleted).
+Screenshot 3: User can delete any notes he/she wishes as well (in the screenshot below, test3 is deleted).
 
 ![](./img/note4.png)
 
